@@ -1,7 +1,7 @@
 
 
 import boto3
-s3= boto3.resource('s3')
+s3 = boto3.resource('s3')
 # for bucket in s3.buckets.all():
 #     print (bucket.name)
 
@@ -19,14 +19,23 @@ def bucket_search(searchBucket):
         #print (bucket.name)
         if bucket.name == searchBucket:
             print("bucket exists")
-            return
+            return True
     print("bucket does not exist")
-    return
+    return False
 
+def object_list_bucket(searchBucket):
+    obj_list=[]
+    bucket = s3.Bucket(searchBucket)
+    for obj in bucket.objects.all():
+        obj_list.append(obj)
+    return obj_list
 
-
-
-bucket_search(searchBucket)
+if bucket_search(searchBucket):
+    obj_list = object_list_bucket(searchBucket)
+    for obj in obj_list:
+        print (obj.key)
+else:
+    print ("Try with another Bucket name")
 
 
 
