@@ -5,6 +5,7 @@ s3 = boto3.resource('s3')
 # for bucket in s3.buckets.all():
 #     print (bucket.name)
 
+
 #s3.create_bucket(Bucket='mybucket38')
 #s3.Object('mybucket38','hello.txt').put(Body=open())
 
